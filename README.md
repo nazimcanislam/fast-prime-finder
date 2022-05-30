@@ -1,4 +1,4 @@
-![Example image](.github/example.png)
+![Example image](.github/opening-page.png)
 
 # Fast Prime Finder
 
