@@ -22,13 +22,13 @@ For more information see the [details](https://byjus.com/maths/how-to-find-prime
 Compile the executable in the 'bin' folder with the 'compile' command in the Makefile.
 
 ```bash
-make compile
+$ make compile
 ```
 
-Run it...
-
+To run enter the bin folder and type...
 ```bash
-make run
+$ cd bin
+$ ./fastprimefinder
 ```
 
 Enter the start number and end number on the screen that comes up. All prime numbers in the range you specify will be found and saved to the file.
