@@ -33,14 +33,17 @@ bool is_prime(int number)
 
 	// -------------------------------
 	// If the sum of the numbers is divisible by 3, the number is not prime.
-	int size = 11;
+	int size = 50;
 	int total = 0;
 	char s_number[size];
 	sprintf(s_number, "%d", number);
 
-	for (int i = 0; i < size; ++i)
+	for (int count = 0; s_number[count] != '\0'; count++)
 	{
-		total += s_number[i];
+		if ((s_number[count] >= '0') && (s_number[count] <= '9'))
+		{
+			total += (s_number[count] - '0');
+		}
 	}
 
 	if (total % 3 == 0)
