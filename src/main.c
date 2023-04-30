@@ -5,7 +5,7 @@
 
 // Making program more cross-platform.
 #ifdef _WIN32
-#include <window.h>
+#include <windows.h>
 #else
 #include <unistd.h>
 #endif
@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
 	// Find and insert primes into primes[] array.
 	for (int i = start_number; i <= end_number; ++i)
 	{    
-		if (is_prime(i))
+		if (is_prime(&i))
 		{
 			primes[index] = i;
 			++index;

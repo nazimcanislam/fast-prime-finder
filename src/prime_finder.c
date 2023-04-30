@@ -4,14 +4,14 @@
 #include <math.h>
 #include <string.h>
 
-bool is_prime(int number)
+bool is_prime(int *number)
 {
 	// Prime numbers less than 8 are: 2, 3, 5, 7.
 	// So return true if the number is equal to one of these, otherwise return false.
 	// If the number is greater than 8, it is not prime if it is divisible by 2 or 5.
-	if (number < 8)
+	if (*number < 8)
 	{
-		if (number == 2 || number == 3 || number == 5 || number == 7)
+		if (*number == 2 || *number == 3 || *number == 5 || *number == 7)
 		{
 			return true;
 		}
@@ -20,12 +20,12 @@ bool is_prime(int number)
 	}
 	else
 	{
-		if (number % 2 == 0)
+		if (*number % 2 == 0)
 		{
 			return false;
 		}
 
-		if (number % 5 == 0)
+		if (*number % 5 == 0)
 		{
 			return false;
 		}
@@ -36,7 +36,7 @@ bool is_prime(int number)
 	int size = 50;
 	int total = 0;
 	char s_number[size];
-	sprintf(s_number, "%d", number);
+	sprintf(s_number, "%d", *number);
 
 	for (int count = 0; s_number[count] != '\0'; count++)
 	{
@@ -54,10 +54,10 @@ bool is_prime(int number)
 
 	// -------------------------------
 	// Finding square root of number and divide every blew number.
-	double root = sqrt((double)number);
+	double root = sqrt((double)*number);
 	for (int i = 2; i <= root; ++i)
 	{
-		if (number % i == 0)
+		if (*number % i == 0)
 		{
 			return false;
 		}
