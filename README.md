@@ -27,11 +27,11 @@ Enter the start number and end number on the screen that comes up. All prime num
 
 Found 664579 primes between 1 and 10000000.
 
-| Platform        | CPU                  | Seconds |
-|-----------------|----------------------|---------|
-| macOS 13.3.1    | Apple M1             | 2       |
-| Windows 10 Home | Intel Core i5-7200U  | 8       |
-| Linux Mint 20.3 | Intel Core i5-2400   | 8       |
+| Platform        | CPU                 | RAM  | Time |
+|-----------------|---------------------|------|------|
+| macOS 13.3.1    | Apple M1            | 8 GB | 2 s  |
+| Windows 10 Home | Intel Core i5-7200U | 8 GB | 8 s  |
+| Linux Mint 20.3 | Intel Core i5-2400  | 4 GB | 8 s  |
 
 ## Why This Program?
 
