@@ -3,7 +3,42 @@
 #include <stdbool.h>
 #include <math.h>
 #include <string.h>
+
+#ifdef _WIN32
+#include <Windows.h>
+
+double get_elapsed_time()
+{
+    LARGE_INTEGER start_time, end_time, frequency;
+    double elapsed_time;
+
+    // Get the frequency of the performance counter
+    QueryPerformanceFrequency(&frequency);
+
+    // Get the starting time
+    QueryPerformanceCounter(&start_time);
+
+    // Perform some operation or code to measure its execution time
+
+    // Get the ending time
+    QueryPerformanceCounter(&end_time);
+
+    // Calculate the elapsed time in seconds
+    elapsed_time = (double)(end_time.QuadPart - start_time.QuadPart) / frequency.QuadPart;
+
+    return elapsed_time;
+}
+#else
 #include <time.h>
+
+double get_elapsed_time()
+{
+	struct timespec start_time;
+	clock_gettime(CLOCK_MONOTONIC, &start_time);
+
+	return start_time.tv_sec + start_time.tv_nsec / 1e9;
+}
+#endif
 
 bool is_prime(int number)
 {
@@ -86,12 +121,4 @@ void colored_print(char text[], char color[], bool endline)
 	{
 		printf("\n");
 	}
-}
-
-double get_elapsed_time()
-{
-	struct timespec start_time;
-	clock_gettime(CLOCK_MONOTONIC, &start_time);
-
-	return start_time.tv_sec + start_time.tv_nsec / 1e9;
 }

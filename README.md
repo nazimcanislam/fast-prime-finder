@@ -9,7 +9,7 @@ For more information see the [details](https://byjus.com/maths/how-to-find-prime
 
 ## Compile & Run Program
 
-Compile the executable in the 'bin' folder with the 'compile' command in the Makefile.
+Compile the executable in the 'bin' folder with the 'release' command in the Makefile.
 
 ```bash
 make release
@@ -34,3 +34,7 @@ Found 664579 primes between 1 and 10000000.
 ## Why This Program?
 
 Dunno.
+
+## Alos
+
+Thanks ChatGPT 🙂
