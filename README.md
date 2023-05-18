@@ -9,7 +9,7 @@ For more information see the [details](https://byjus.com/maths/how-to-find-prime
 
 ## Compile & Run Program
 
-Compile the executable in the 'bin' folder with the 'release' command in the Makefile.
+This program not optimized for Windows. It runs only `Linux` or `macOS`. Compile the executable in the 'bin' folder with the 'release' command in the Makefile.
 
 ```bash
 make release
@@ -27,9 +27,9 @@ Enter the start number and end number on the screen that comes up. All prime num
 
 Found 664579 primes between 1 and 10000000.
 
-| Platform     | CPU      | Time   |
-|--------------|----------|--------|
-| macOS 13.3.1 | Apple M1 | ~0.8 s |
+| Platform        | CPU                | Time   |
+|-----------------|--------------------|--------|
+| macOS 13.3.1    | Apple M1           | ~0.8 s |
 
 ## Why This Program?
 
