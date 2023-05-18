@@ -37,61 +37,27 @@ double get_elapsed_time()
 
 bool is_prime(int number)
 {
-	// Prime numbers less than 8 are: 2, 3, 5, 7.
-	// So return true if the number is equal to one of these, otherwise return false.
-	// If the number is greater than 8, it is not prime if it is divisible by 2 or 5.
-	if (number < 8)
-	{
-		if (number == 2 || number == 3 || number == 5 || number == 7)
-		{
-			return true;
-		}
+    if (number < 2) {
+        return false;
+    }
 
-		return false;
-	}
-	else
-	{
-		if (number % 2 == 0)
-		{
-			return false;
-		}
+    if (number == 2 || number == 3) {
+        return true;
+    }
 
-		if (number % 5 == 0)
-		{
-			return false;
-		}
-	}
+    if (number % 2 == 0 || number % 3 == 0) {
+        return false;
+    }
 
-	// -------------------------------
-	// If the sum of the numbers is divisible by 3, the number is not prime.
-	int total = 0;
-	int temp = number;
-	while (temp > 0)
-	{
-		total += temp % 10;
-		temp /= 10;
-	}
+    // Checking divisibility for numbers of the form 6k ± 1 up to sqrt(number).
+    int sqrt_num = sqrt(number);
+    for (int i = 5; i <= sqrt_num; i += 6) {
+        if (number % i == 0 || number % (i + 2) == 0) {
+            return false;
+        }
+    }
 
-	if (total % 3 == 0)
-	{
-		return false;
-	}
-	// -------------------------------
-
-	// -------------------------------
-	// Finding square root of number and divide every blew number.
-	double root = sqrt(number);
-	for (int i = 2; i <= root; ++i)
-	{
-		if (number % i == 0)
-		{
-			return false;
-		}
-	}
-	// -------------------------------
-
-	// If the number passes all phases, it is prime.
-	return true;
+    return true;
 }
 
 void colored_print(char text[], char color[], bool endline)

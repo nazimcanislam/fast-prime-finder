@@ -4,10 +4,9 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include "prime_finder.h"
-
-#define NUM_THREADS 4
 
 typedef struct {
 	int range_start;
@@ -80,15 +79,17 @@ int main(int argc, char const *argv[])
 		free(file);
 	}
 
-	int step = (range_end - range_start + 1) / NUM_THREADS;
+	int num_threads = sysconf(_SC_NPROCESSORS_ONLN);
 
-	pthread_t threads[NUM_THREADS];
-	ThreadArgs thread_args[NUM_THREADS];
+	int step = (range_end - range_start + 1) / num_threads;
+
+	pthread_t threads[num_threads];
+	ThreadArgs thread_args[num_threads];
 	unsigned int total_count = 0;
 
 	double start_time = get_elapsed_time();
 
-	for (int i = 0; i < NUM_THREADS; ++i)
+	for (int i = 0; i < num_threads; ++i)
 	{
 		thread_args[i].range_start = range_start + i * step;
 		thread_args[i].range_end = range_start + (i + 1) * step - 1;
@@ -99,7 +100,7 @@ int main(int argc, char const *argv[])
 		pthread_create(&threads[i], NULL, find_primes, (void*)&thread_args[i]);
 	}
 
-	for (int i = 0; i < NUM_THREADS; ++i)
+	for (int i = 0; i < num_threads; ++i)
 	{
 		pthread_join(threads[i], NULL);
 	}
