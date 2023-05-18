@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
 	scanf("%c", &choice);
 	FILE *file = NULL;
 	const char *file_name = "primes.txt";
-	if (choice == 'Y' || choice == 'y' || choice == 'yes')
+	if (choice == 'Y' || choice == 'y')
 	{
 		save = true;
 		file = fopen(file_name, "w");

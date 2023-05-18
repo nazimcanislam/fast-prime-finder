@@ -9,23 +9,18 @@
 
 double get_elapsed_time()
 {
-    LARGE_INTEGER start_time, end_time, frequency;
-    double elapsed_time;
+    LARGE_INTEGER frequency;
+    LARGE_INTEGER start_time;
+    LARGE_INTEGER end_time;
 
-    // Get the frequency of the performance counter
     QueryPerformanceFrequency(&frequency);
-
-    // Get the starting time
     QueryPerformanceCounter(&start_time);
 
-    // Perform some operation or code to measure its execution time
+    // Yapılacak işlemler
 
-    // Get the ending time
     QueryPerformanceCounter(&end_time);
 
-    // Calculate the elapsed time in seconds
-    elapsed_time = (double)(end_time.QuadPart - start_time.QuadPart) / frequency.QuadPart;
-
+    double elapsed_time = (double)(end_time.QuadPart - start_time.QuadPart) / frequency.QuadPart;
     return elapsed_time;
 }
 #else
