@@ -31,10 +31,6 @@ Found 664579 primes between 1 and 10000000.
 |-----------------|--------------------|--------|
 | macOS 13.3.1    | Apple M1           | ~0.8 s |
 
-## Why This Program?
-
-Dunno.
-
-## Alos
+## Also
 
 Thanks ChatGPT 🙂
