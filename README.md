@@ -27,9 +27,10 @@ Enter the start number and end number on the screen that comes up. All prime num
 
 Found 664579 primes between 1 and 10000000.
 
-| Platform        | CPU                | Time   |
-|-----------------|--------------------|--------|
-| macOS 13.3.1    | Apple M1           | ~0.8 s |
+| Platform        | CPU                | Time    |
+|-----------------|--------------------|---------|
+| macOS 13.3.1    | Apple M1           | ~0.1 s |
+| Ubuntu 22.10    | Intel Core i5-2400 | ~2.5 s |
 
 ## Also
 
