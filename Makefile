@@ -6,14 +6,12 @@ MKDIR=mkdir $(BIN_FOLDER)
 
 ifeq ($(OS),Windows_NT)
 	CC = mingw32-gcc
-	RM = del 
 	C_FLAGS = -lm -pthread
 	RMDIR=if exist $(BIN_FOLDER) rd /s /q $(BIN_FOLDER)
 else
 	CC = gcc
 	C_FLAGS = -lm
-	RM = rm -rf
-	RMDIR=rm -rf $(BIN_FOLDER)
+	RMDIR = rm -rf $(BIN_FOLDER)
 endif
 
 
