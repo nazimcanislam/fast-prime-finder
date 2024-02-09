@@ -5,14 +5,16 @@ SOURCE_FOLDER=src
 INCLUDE_FOLDER=include
 PROGRAM_NAME=fastprimefinder
 
+ifeq ($(OS),Windows_NT)
+	C_FLAGS = -lm -pthread
+else
+	C_FLAGS = -lm
+endif
+
 all: debug release
 
-debug: clean
-	$(CC) -Wall -g -o $(BIN_FOLDER)/$(PROGRAM_NAME) $(SOURCE_FOLDER)/*.c -I $(INCLUDE_FOLDER) -lm
+debug:
+	$(CC) -Wall -g -o $(BIN_FOLDER)/$(PROGRAM_NAME) $(SOURCE_FOLDER)/*.c -I $(INCLUDE_FOLDER) $(C_FLAGS)
 
-release: clean
-	$(CC) -w -o3 -o $(BIN_FOLDER)/$(PROGRAM_NAME) $(SOURCE_FOLDER)/*.c -I $(INCLUDE_FOLDER) -lm
-
-clean:
-	rm -rf $(BIN_FOLDER)
-	mkdir $(BIN_FOLDER)
+release:
+	$(CC) -w -o3 -o $(BIN_FOLDER)/$(PROGRAM_NAME) $(SOURCE_FOLDER)/*.c -I $(INCLUDE_FOLDER) $(C_FLAGS)

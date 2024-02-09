@@ -3,12 +3,18 @@
 #include <math.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <sys/stat.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
 #include <unistd.h>
+#include <sys/stat.h>
+#endif
 
 #include "prime_finder.h"
 
-typedef struct {
+typedef struct
+{
 	int range_start;
 	int range_end;
 	unsigned int *count;
@@ -18,7 +24,7 @@ typedef struct {
 
 void *find_primes(void *arg)
 {
-	ThreadArgs *args = (ThreadArgs*) arg;
+	ThreadArgs *args = (ThreadArgs *)arg;
 	int range_start = args->range_start;
 	int range_end = args->range_end;
 	unsigned int *count = args->count;
@@ -40,6 +46,8 @@ void *find_primes(void *arg)
 	*count += prime_count;
 
 	pthread_exit(NULL);
+
+	return NULL;
 }
 
 /**
@@ -79,7 +87,13 @@ int main(int argc, char const *argv[])
 		free(file);
 	}
 
+#ifdef _WIN32
+	SYSTEM_INFO sysinfo;
+	GetSystemInfo(&sysinfo);
+	int num_threads = sysinfo.dwNumberOfProcessors;
+#else
 	int num_threads = sysconf(_SC_NPROCESSORS_ONLN);
+#endif
 
 	int step = (range_end - range_start + 1) / num_threads;
 
@@ -97,7 +111,7 @@ int main(int argc, char const *argv[])
 		thread_args[i].file = file;
 		thread_args[i].save = save_pointer;
 
-		pthread_create(&threads[i], NULL, find_primes, (void*)&thread_args[i]);
+		pthread_create(&threads[i], NULL, find_primes, (void *)&thread_args[i]);
 	}
 
 	for (int i = 0; i < num_threads; ++i)
@@ -119,6 +133,35 @@ int main(int argc, char const *argv[])
 
 	if (save)
 	{
+#ifdef _WIN32
+		HANDLE hFile = CreateFile(file_name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		if (hFile == INVALID_HANDLE_VALUE)
+		{
+			printf("\033[0;31mERROR:\033[0m Couldn't open file.\n");
+			return 1;
+		}
+
+		LARGE_INTEGER fileSize;
+		if (!GetFileSizeEx(hFile, &fileSize))
+		{
+			printf("\033[0;31mERROR:\033[0m Couldn't get file size.\n");
+			CloseHandle(hFile);
+			return 1;
+		}
+
+		printf("File size: %I64d ", fileSize.QuadPart);
+
+		if (fileSize.QuadPart > 1)
+		{
+			printf("bytes\n");
+		}
+		else if (fileSize.QuadPart == 1)
+		{
+			printf("byte\n");
+		}
+
+		CloseHandle(hFile);
+#else
 		struct stat st;
 		if (stat(file_name, &st) == 0)
 		{
@@ -138,6 +181,7 @@ int main(int argc, char const *argv[])
 		{
 			printf("\033[0;31mERROR:\033[0m Couldn't get file size.\n");
 		}
+#endif
 	}
 
 	// Return success status.
