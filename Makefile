@@ -13,7 +13,7 @@ else
 	CC = gcc
 	C_FLAGS = -lm
 	RM = rm -rf
-	RMDIR=[ -d $(BIN_FOLDER) ] && rm -rf $(BIN_FOLDER)
+	RMDIR=rm -rf $(BIN_FOLDER)
 endif
 
 
