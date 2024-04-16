@@ -12,6 +12,7 @@
 #endif
 
 #include "prime_finder.h"
+#include "utils.h"
 
 typedef struct
 {

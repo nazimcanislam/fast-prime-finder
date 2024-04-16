@@ -6,21 +6,9 @@
 #include <string.h>
 
 /**
- * @brief Quickly finds whether it is prime, even if the number sent as a parameter is very large.
+ * Checks whether a given interger is a prime number.
  * 
- * @param number Number to check
- * @return true If it is prime
- * @return false If it is not prime
+ * @param number The interger to be checked for primality.
+ * @return true if number is prime, false otherwise.
  */
 bool is_prime(int number);
-
-/**
- * @brief Prints text in color.
- * 
- * @param text Text to print
- * @param color Color name: "primary", "danger", "success"
- * @param endline Go to the bottom line after printed?
- */
-void colored_print(char text[], char color[], bool endline);
-
-double get_elapsed_time();

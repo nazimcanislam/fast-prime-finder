@@ -4,82 +4,43 @@
 #include <math.h>
 #include <string.h>
 
-#ifdef _WIN32
-#include <windows.h>
-
-double get_elapsed_time()
-{
-    LARGE_INTEGER frequency;
-    LARGE_INTEGER start_time;
-
-    QueryPerformanceFrequency(&frequency);
-    QueryPerformanceCounter(&start_time);
-
-    double elapsed_time = (double)(start_time.QuadPart) / frequency.QuadPart;
-    return elapsed_time;
-}
-#else
-#include <time.h>
-
-double get_elapsed_time()
-{
-    struct timespec start_time;
-    clock_gettime(CLOCK_MONOTONIC, &start_time);
-
-    return start_time.tv_sec + start_time.tv_nsec / 1e9;
-}
-#endif
-
+/**
+ * Checks whether a given interger is a prime number.
+ * 
+ * @param number The interger to be checked for primality.
+ * @return true if number is prime, false otherwise.
+ */
 bool is_prime(int number)
 {
+    // Special cases: 0, 1, and negative numbers are not prime
     if (number < 2)
     {
         return false;
     }
 
+    // Base cases: 2 and 3 are prime
     if (number == 2 || number == 3)
     {
         return true;
     }
 
+    // Check divisibility by 2 and 3
     if (number % 2 == 0 || number % 3 == 0)
     {
         return false;
     }
 
-    // Checking divisibility for numbers of the form 6k ± 1 up to sqrt(number).
+    // Check divisibility for numbers of the form 6k ± 1 up to sqrt(number)
     int sqrt_num = sqrt(number);
     for (int i = 5; i <= sqrt_num; i += 6)
     {
+        // Check divisibility by numbers of the form 6k ± 1 and 6k ± 1 + 2
         if (number % i == 0 || number % (i + 2) == 0)
         {
             return false;
         }
     }
 
+    // If no divisors are found, the number is prime
     return true;
-}
-
-void colored_print(char text[], char color[], bool endline)
-{
-    if (memcmp(color, "danger", 6) == 0)
-    {
-        printf("\033[0;31");
-    }
-    else if (memcmp(color, "success", 6) == 0)
-    {
-        printf("\033[0;32m");
-    }
-    else if (memcmp(color, "primary", 7) == 0)
-    {
-        printf("\033[0;34m");
-    }
-
-    printf("%s", text);
-    printf("\033[0m");
-
-    if (endline)
-    {
-        printf("\n");
-    }
 }
