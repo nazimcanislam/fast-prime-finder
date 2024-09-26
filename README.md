@@ -65,16 +65,17 @@ cd bin
 ```
 
 Enter the start number and end number on the screen that comes up. All prime numbers in the range you specify will be found and saved to the file.
-
+3
 ## Tests
 
 Found 664,579 primes between 1 and 10,000,000.
 
-| Platform                 | Architecture | CPU                 | RAM   | Processing Time |
-|--------------------------|--------------|---------------------|-------|-----------------|
-| macOS 13.3.1             | ARM64        | Apple M1            | 8 GB  | ~ 0.10 s        |
-| Windows 11, version 23H2 | AMD64        | Intel Core i7-1255U | 24 GB | ~ 0.17 s        |
-| Ubuntu 22.10             | AMD64        | Intel Core i5-2400  | 4 GB  | ~ 2.50 s        |
+| Platform                 | Architecture | CPU                  | RAM   | Processing Time |
+|--------------------------|--------------|----------------------|-------|-----------------|
+| macOS 13.3.1             | ARM64        | Apple M1             | 8 GB  | ~ 0.10 s        |
+| Windows 11, version 23H2 | AMD64        | Intel Core i5-12450H | 32 GB | ~ 0.16 s        |
+| Windows 11, version 23H2 | AMD64        | Intel Core i7-1255U  | 24 GB | ~ 0.17 s        |
+| Ubuntu 22.10             | AMD64        | Intel Core i5-2400   | 4 GB  | ~ 2.50 s        |
 
 Abundance of RAM does not matter. We can assume that the only thing that matters is processor power.
 
